@@ -1,0 +1,21 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "thedatafactorytest"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"Triggerlandingfile_properties_typeProperties_scope": {
+			"value": "/subscriptions/e0173e3a-c82e-4063-9005-e49825aded0c/resourceGroups/AARG/providers/Microsoft.Storage/storageAccounts/datafactorytestbucket"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
