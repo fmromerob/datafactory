@@ -18,6 +18,31 @@
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
-		"schema": []
+		"schema": [
+			{
+				"name": "ID_Transaccion",
+				"type": "String"
+			},
+			{
+				"name": "Fecha",
+				"type": "String"
+			},
+			{
+				"name": "Producto_SKU",
+				"type": "String"
+			},
+			{
+				"name": "Cantidad",
+				"type": "String"
+			},
+			{
+				"name": "Precio_Unitario",
+				"type": "String"
+			},
+			{
+				"name": "ID_Tienda",
+				"type": "String"
+			}
+		]
 	}
 }
