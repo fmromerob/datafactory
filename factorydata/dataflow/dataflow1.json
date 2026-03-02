@@ -26,6 +26,13 @@
 						"type": "DatasetReference"
 					},
 					"name": "JsonSink"
+				},
+				{
+					"dataset": {
+						"referenceName": "Parquet1",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
 				}
 			],
 			"transformations": [
@@ -34,6 +41,9 @@
 				},
 				{
 					"name": "addtotalincome"
+				},
+				{
+					"name": "aggregate1"
 				}
 			],
 			"scriptLines": [
@@ -63,12 +73,22 @@
 				"     ignoreSpaces: false,",
 				"     broadcast: 'auto')~> joinventasproductos",
 				"joinventasproductos derive(ingreso_total = multiply(iifNull(toDouble(Cantidad), 1.0), iifNull(toDouble(Precio_Unitario), 0.0))) ~> addtotalincome",
+				"addtotalincome aggregate(groupBy(Categoria,",
+				"          Fecha),",
+				"     ingreso_total = sum(ingreso_total)) ~> aggregate1",
 				"addtotalincome sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     partitionFileNames:['result.json'],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     partitionBy('hash', 1)) ~> JsonSink"
+				"     partitionBy('hash', 1)) ~> JsonSink",
+				"aggregate1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     partitionFileNames:['aggregate.parquet'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
 			]
 		}
 	}
