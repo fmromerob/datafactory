@@ -1,5 +1,5 @@
 {
-	"name": "DelimitedText1",
+	"name": "Ventas",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureBlobStorage1",
@@ -11,8 +11,7 @@
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": "ventas.csv",
-				"folderPath": "landing",
-				"container": "datafactorytestbucket"
+				"container": "landing"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
