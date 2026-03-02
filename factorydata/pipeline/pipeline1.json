@@ -106,7 +106,13 @@
 						]
 					}
 				],
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@and(activity('Get Metadata Productos').output.exists, activity('Get Metadata_Ventas').output.exists)",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"annotations": []
