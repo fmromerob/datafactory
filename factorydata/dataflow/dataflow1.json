@@ -65,8 +65,10 @@
 				"joinventasproductos derive(ingreso_total = multiply(iifNull(toDouble(Cantidad), 1.0), iifNull(toDouble(Precio_Unitario), 0.0))) ~> addtotalincome",
 				"addtotalincome sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     partitionFileNames:['result.json'],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> JsonSink"
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> JsonSink"
 			]
 		}
 	}
