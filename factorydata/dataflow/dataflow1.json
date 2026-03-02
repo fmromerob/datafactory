@@ -19,10 +19,21 @@
 					"name": "productos"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Json1",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
 			"transformations": [
 				{
 					"name": "joinventasproductos"
+				},
+				{
+					"name": "addtotalincome"
 				}
 			],
 			"scriptLines": [
@@ -50,7 +61,12 @@
 				"     joinType:'left',",
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
-				"     broadcast: 'auto')~> joinventasproductos"
+				"     broadcast: 'auto')~> joinventasproductos",
+				"joinventasproductos derive(ingreso_total = multiply(toDouble(Cantidad), toDouble(Precio_Unitario))) ~> addtotalincome",
+				"addtotalincome sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
 			]
 		}
 	}
